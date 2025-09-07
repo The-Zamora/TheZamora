@@ -7,15 +7,10 @@ const closeOffers = document.getElementById('closeOffers');
 function toggleOffersPopover() {
   offersPopover.classList.toggle('visible');
   
-  // Hide the button when popover is visible
+  // Add/remove event listener for clicking outside
   if (offersPopover.classList.contains('visible')) {
-    offersButton.style.opacity = '0';
-    offersButton.style.visibility = 'hidden';
-    // Add event listener to close when clicking outside
     setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
   } else {
-    offersButton.style.opacity = '1';
-    offersButton.style.visibility = 'visible';
     document.removeEventListener('click', handleClickOutside);
   }
 }
