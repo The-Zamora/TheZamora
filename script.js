@@ -1,21 +1,46 @@
-function handleSubmit(e){
-  e.preventDefault();
-  const note = document.getElementById('form-note');
-  note.textContent = 'Thanks! This demo form does not send emails yet.';
-  e.target.reset();
-  return false;
+// Handle Offers Button
+const offersButton = document.getElementById('offersButton');
+const offersPopover = document.getElementById('offersPopover');
+const closeOffers = document.getElementById('closeOffers');
+
+// Toggle popover visibility
+function toggleOffersPopover() {
+  offersPopover.classList.toggle('visible');
+  
+  // Hide the button when popover is visible
+  if (offersPopover.classList.contains('visible')) {
+    offersButton.style.opacity = '0';
+    offersButton.style.visibility = 'hidden';
+    // Add event listener to close when clicking outside
+    setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+  } else {
+    offersButton.style.opacity = '1';
+    offersButton.style.visibility = 'visible';
+    document.removeEventListener('click', handleClickOutside);
+  }
 }
 
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Change header background on scroll for readability
-const header = document.querySelector('.site-header');
-const toggleHeader = () => {
-  if(window.scrollY > 12){
-    header.style.background = 'rgba(10,10,12,.85)';
-  } else {
-    header.style.background = 'linear-gradient(180deg, rgba(10,10,12,.75), rgba(10,10,12,.2))';
+// Close popover when clicking outside
+function handleClickOutside(event) {
+  if (!offersPopover.contains(event.target) && event.target !== offersButton) {
+    toggleOffersPopover();
   }
-};
-document.addEventListener('scroll', toggleHeader);
-toggleHeader();
+}
+
+// Event listeners
+offersButton.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleOffersPopover();
+});
+
+closeOffers.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleOffersPopover();
+});
+
+// Close popover when pressing Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && offersPopover.classList.contains('visible')) {
+    toggleOffersPopover();
+  }
+});
