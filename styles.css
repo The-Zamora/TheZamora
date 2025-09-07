@@ -7,6 +7,8 @@
   --panel: #131316;
   --overlay: rgba(0,0,0,.50);
   --font: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  /* Adjust this to exactly match the logo background */
+  --logo-bg: #f1ebe4;
 }
 
 *{box-sizing:border-box}
@@ -148,14 +150,39 @@ body{
   background: var(--overlay);
 }
 
+.hero-logo{
+  position: relative;
+  z-index: 1;
+  width: clamp(150px, 23vw, 280px);
+  height: auto;
+  opacity: 1;
+  filter: brightness(1.15) saturate(1.08) drop-shadow(0 6px 22px rgba(0,0,0,.5));
+  margin: 0 1rem -0.5rem;
+  border-radius: 28px;
+  transform: translateY(-16vh);
+}
+
 .hero-title{
-  position:relative;
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin: 0 1rem;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.1rem, 5.2vw, 3.2rem);
   line-height: 1.1;
-  text-shadow: 0 6px 22px rgba(0,0,0,.5);
-  letter-spacing: .02em;
-  transform: translateY(-10px);
+  color: var(--logo-bg);
+  text-shadow: 0 6px 22px rgba(0,0,0,.6);
+  letter-spacing: .01em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+@media (max-width: 360px){
+  .hero-title{ font-size: clamp(.95rem, 5.4vw, 2.6rem); letter-spacing: 0; }
+}
+
+@media (max-width: 480px){
+  .hero-logo{ transform: translateY(-12vh); }
 }
 
 .hero-floating-socials{
