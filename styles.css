@@ -194,36 +194,79 @@ body{
   }
 }
 
-/* Mobile Scroll Indicator */
-.hero::after {
-  content: '';
+/* Mobile Scroll Down Button */
+.mobile-scroll-down {
   position: absolute;
-  bottom: 15px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
-  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
   opacity: 0;
-  display: none;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease 1s forwards;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%) translateY(0);
-  width: 3px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 2px;
-  animation: scrollIndicator 1.5s infinite ease-in-out;
-  z-index: 5;
-  opacity: 0;
-  display: none;
+.mobile-scroll-down svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+  animation: bounce 2s infinite;
+}
+
+.mobile-scroll-down:active {
+  transform: translateX(-50%) scale(0.95);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Hide on desktop initially */
+@media (min-width: 769px) {
+  .mobile-scroll-down {
+    display: none;
+  }
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  .mobile-scroll-down {
+    display: flex;
+  }
+  
+  /* Hide the default scroll indicator on mobile */
+  .hero::after,
+  .hero::before {
+    display: none !important;
+  }
 }
 
 @keyframes scrollIndicator {
@@ -342,15 +385,44 @@ body{
 
 .main{ display:block; }
 
-.hero{
+.hero {
   min-height: 100vh;
-  background: url("assets/bg.webp") center/cover no-repeat fixed;
+  background: url("assets/bg.webp") center/cover no-repeat;
   position: relative;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
   overflow: hidden;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+  
+  /* Add a pseudo-element to improve mobile performance */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+  }
 }
 
 .hero .overlay{

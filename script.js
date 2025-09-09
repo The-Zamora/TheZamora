@@ -76,7 +76,54 @@ function loadInstagramFeed() {
 }
 
 // Load Instagram feed when the page loads
-window.addEventListener('DOMContentLoaded', loadInstagramFeed);
+window.addEventListener('DOMContentLoaded', function() {
+  loadInstagramFeed();
+
+  // Mobile scroll down button functionality
+  const mobileScrollDown = document.getElementById('mobileScrollDown');
+  
+  if (mobileScrollDown) {
+    mobileScrollDown.addEventListener('click', function(e) {
+      e.preventDefault();
+      const instagramSection = document.querySelector('.instagram-feed');
+      if (instagramSection) {
+        window.scrollTo({
+          top: instagramSection.offsetTop - 20,
+          behavior: 'smooth'
+        });
+      } else {
+        // Fallback to scrolling to bottom of hero section
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+          window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+    
+    // Show/hide button based on scroll position
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Fade out when scrolling down, fade in when at top
+      if (scrollTop > lastScrollTop && scrollTop > 50) {
+        // Scrolling down
+        mobileScrollDown.style.opacity = '0';
+        mobileScrollDown.style.visibility = 'hidden';
+      } else {
+        // At top or scrolling up
+        if (scrollTop < 50) {
+          mobileScrollDown.style.opacity = '1';
+          mobileScrollDown.style.visibility = 'visible';
+        }
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  }
+});
 
 // Re-process Instagram embeds when they become visible (for lazy loading)
 const observer = new IntersectionObserver((entries) => {
