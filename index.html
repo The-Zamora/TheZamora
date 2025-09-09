@@ -38,8 +38,29 @@
         <!-- <a href="https://www.youtube.com/@TheZamoraDotIn" target="_blank" rel="noopener" aria-label="YouTube" class="social-link youtube" title="YouTube" tabindex="0" data-popover="Subscribe on YouTube"><img src="assets/youtube.png" alt="YouTube"></a> -->
         <a href="https://www.threads.com/@thezamora.in" target="_blank" rel="noopener" aria-label="Threads" class="social-link threads" title="Threads" tabindex="0" data-popover="Follow us on Threads"><img src="assets/threads.png" alt="Threads"></a>
       </div>
+      
+      <!-- Scroll Down Indicator -->
+      <div class="scroll-down-indicator" aria-hidden="true">
+        <span>Scroll Down</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="7 13 12 18 17 13"></polyline>
+          <polyline points="7 6 12 11 17 6"></polyline>
+        </svg>
+      </div>
     </section>
   </main>
+
+  <!-- Instagram Feed Section -->
+  <section class="instagram-feed" aria-label="Instagram Feed">
+    <h2 class="instagram-title">Follow us on Instagram</h2>
+    <a href="https://www.instagram.com/thezamora.in" target="_blank" rel="noopener noreferrer" class="instagram-handle">@thezamora.in</a>
+    <div class="instagram-posts" id="instagramFeed">
+      <!-- Posts will be loaded here by JavaScript -->
+    </div>
+    <a href="https://www.instagram.com/thezamora.in/" target="_blank" rel="noopener" class="instagram-button">
+      View on Instagram
+    </a>
+  </section>
 
   <!-- Offers Button and Popover -->
   <div class="offers-container">
@@ -57,5 +78,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
