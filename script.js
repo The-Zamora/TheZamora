@@ -48,8 +48,9 @@ function loadInstagramFeed() {
   // Array of Instagram post URLs to display
   const postUrls = [
     'https://www.instagram.com/reel/DOWDyfdD1QQ/',
+    'https://www.instagram.com/p/DOYsVVPDwEU/',
     'https://www.instagram.com/p/DOSLfDGD0NK/',
-    'https://www.instagram.com/p/DOQ-Jaaj1Q5/'
+    'https://www.instagram.com/p/DOQ-Jaaj1Q5/',
     // Add more post URLs as needed
   ];
 
