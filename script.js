@@ -3,6 +3,17 @@ const offersButton = document.getElementById('offersButton');
 const offersPopover = document.getElementById('offersPopover');
 const closeOffers = document.getElementById('closeOffers');
 
+// Array of Instagram post URLs to display
+const postUrls = [
+  'https://www.instagram.com/p/DOYvDFPj-dc/',
+  "https://www.instagram.com/reel/DOfeY04j6ih/",
+  'https://www.instagram.com/reel/DOWDyfdD1QQ/',
+  'https://www.instagram.com/p/DOYsVVPDwEU/',
+  'https://www.instagram.com/p/DOSLfDGD0NK/',
+  'https://www.instagram.com/p/DOQ-Jaaj1Q5/',
+  // Add more post URLs as needed
+];
+
 // Toggle popover visibility
 function toggleOffersPopover() {
   offersPopover.classList.toggle('visible');
@@ -44,16 +55,6 @@ document.addEventListener('keydown', (e) => {
 function loadInstagramFeed() {
   const instagramFeed = document.getElementById('instagramFeed');
   if (!instagramFeed) return;
-
-  // Array of Instagram post URLs to display
-  const postUrls = [
-    'https://www.instagram.com/p/DOYvDFPj-dc/',
-    'https://www.instagram.com/reel/DOWDyfdD1QQ/',
-    'https://www.instagram.com/p/DOYsVVPDwEU/',
-    'https://www.instagram.com/p/DOSLfDGD0NK/',
-    'https://www.instagram.com/p/DOQ-Jaaj1Q5/',
-    // Add more post URLs as needed
-  ];
 
   // Create post elements
   postUrls.forEach(postUrl => {
