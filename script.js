@@ -14,11 +14,10 @@ const closeOffers = document.getElementById('closeOffers');
 // Array of Instagram post URLs to display
 const postUrls = [
   'https://www.instagram.com/p/DOYvDFPj-dc/',
+  "https://www.instagram.com/reel/DOiYZthj7eE/",
   "https://www.instagram.com/reel/DOfeY04j6ih/",
   'https://www.instagram.com/reel/DOWDyfdD1QQ/',
   'https://www.instagram.com/p/DOYsVVPDwEU/',
-  'https://www.instagram.com/p/DOSLfDGD0NK/',
-  'https://www.instagram.com/p/DOQ-Jaaj1Q5/',
   // Add more post URLs as needed
 ];
 
@@ -221,4 +220,70 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.instagram-post').forEach(post => {
   observer.observe(post);
+});
+
+// First Time Visitor Popup Logic
+function initFirstTimePopup() {
+  const popup = document.getElementById('firstTimePopup');
+  const popupClose = document.getElementById('popupClose');
+  const popupDismiss = document.getElementById('popupDismiss');
+  const popupOverlay = document.querySelector('.popup-overlay');
+  
+  // Check if user has visited before
+  const hasVisited = localStorage.getItem('thezamora_visited');
+  
+  // Show popup only for first-time visitors
+  if (!hasVisited) {
+    // Add a delay to let users explore the site first
+    setTimeout(() => {
+      popup.classList.add('show');
+      // Prevent body scroll when popup is open
+      document.body.style.overflow = 'hidden';
+    }, 5000); // 5 seconds delay
+  }
+  
+  // Close popup function
+  function closePopup() {
+    popup.classList.remove('show');
+    // Restore body scroll
+    document.body.style.overflow = '';
+    // Mark user as visited
+    localStorage.setItem('thezamora_visited', 'true');
+  }
+  
+  // Event listeners for closing popup
+  if (popupClose) {
+    popupClose.addEventListener('click', closePopup);
+  }
+  
+  if (popupDismiss) {
+    popupDismiss.addEventListener('click', closePopup);
+  }
+  
+  if (popupOverlay) {
+    popupOverlay.addEventListener('click', closePopup);
+  }
+  
+  // Close popup when pressing Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.classList.contains('show')) {
+      closePopup();
+    }
+  });
+  
+  // Track CTA click for analytics (optional)
+  const popupCta = document.querySelector('.popup-cta');
+  if (popupCta) {
+    popupCta.addEventListener('click', () => {
+      // Mark as visited when user clicks CTA
+      localStorage.setItem('thezamora_visited', 'true');
+      // You can add analytics tracking here if needed
+      console.log('First time visitor clicked CTA');
+    });
+  }
+}
+
+// Initialize popup when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initFirstTimePopup();
 });
