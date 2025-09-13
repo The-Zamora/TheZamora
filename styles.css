@@ -291,27 +291,9 @@ body{
   }
   
   .hero-floating-socials {
-    flex-direction: row;
-    left: 50%;
-    top: auto;
-    bottom: 20px;
-    transform: translateX(-50%);
-    padding: 0.8rem 1.2rem;
-    border-radius: 999px;
-    position: fixed;
-  }
-  
-  .hero-floating-socials .social-link::after {
-    left: 50%;
-    top: auto;
-    bottom: 100%;
-    transform: translateX(-50%) translateY(-8px);
-    white-space: nowrap;
-  }
-  
-  .hero-floating-socials .social-link:hover::after,
-  .hero-floating-socials .social-link:focus-visible::after {
-    transform: translateX(-50%) translateY(-12px);
+    left: 1rem;
+    padding: 1rem 0.6rem;
+    gap: 0.8rem;
   }
   
   .hero-floating-socials .social-link img {
@@ -367,9 +349,15 @@ body{
     transform: translateY(-12vh) !important;
   }
   
+  .hero-floating-socials {
+    left: 0.8rem;
+    padding: 0.8rem 0.5rem;
+    gap: 0.6rem;
+  }
+  
   .hero-floating-socials .social-link img {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -954,11 +942,13 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 
 .action-link {
   display: inline-block;
-  background: linear-gradient(135deg, #6A38F0 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, rgba(106, 56, 240, 0.7) 0%, rgba(139, 92, 246, 0.7) 100%);
+  backdrop-filter: saturate(120%) blur(8px);
   color: white;
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 20px;
+  border: 1px solid rgba(106, 56, 240, 0.3);
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -969,6 +959,7 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 .action-link:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(106, 56, 240, 0.3);
+  border-color: rgba(106, 56, 240, 0.5);
 }
 
 .help-links {
@@ -1017,11 +1008,13 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 }
 
 .help-popover .action-link {
-  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.7) 0%, rgba(110, 231, 183, 0.7) 100%);
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .help-popover .action-link:hover {
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
+  border-color: rgba(52, 211, 153, 0.5);
 }
 
 /* Hiring Popover Specific Styling */
@@ -1045,6 +1038,13 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 .hiring-links .action-link {
   width: 100%;
   max-width: 200px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.7) 0%, rgba(167, 139, 250, 0.7) 100%);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.hiring-links .action-link:hover {
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 /* Offers Popover Specific Styling */
