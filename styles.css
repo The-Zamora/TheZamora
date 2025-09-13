@@ -846,9 +846,8 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 
 /* Action Buttons */
 .action-button {
-  background: linear-gradient(135deg, #6A38F0 0%, #8B5CF6 100%);
   color: #fff;
-  border: none;
+  border: 1px solid rgba(255,255,255,.2);
   border-radius: 30px;
   padding: 10px 20px;
   font-size: 0.95rem;
@@ -864,6 +863,7 @@ input:focus, textarea:focus{ border-color: var(--accent); }
   z-index: 1;
   width: auto;
   min-width: 100px;
+  backdrop-filter: saturate(120%) blur(8px);
 }
 
 .action-button:hover {
@@ -892,12 +892,19 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 }
 
 /* Button Specific Styling */
+.hiring-button {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.7) 0%, rgba(167, 139, 250, 0.7) 100%);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
 .help-button {
-  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.7) 0%, rgba(110, 231, 183, 0.7) 100%);
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .offers-button {
-  background: linear-gradient(135deg, #D4AF37 0%, #F9E79F 100%);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.7) 0%, rgba(252, 211, 77, 0.7) 100%);
+  border-color: rgba(251, 191, 36, 0.3);
   color: #000;
 }
 
