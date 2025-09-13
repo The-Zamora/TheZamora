@@ -1,4 +1,12 @@
-// Handle Offers Button
+// Handle Action Buttons (Hiring, Help, Offers)
+const hiringButton = document.getElementById('hiringButton');
+const hiringPopover = document.getElementById('hiringPopover');
+const closeHiring = document.getElementById('closeHiring');
+
+const helpButton = document.getElementById('helpButton');
+const helpPopover = document.getElementById('helpPopover');
+const closeHelp = document.getElementById('closeHelp');
+
 const offersButton = document.getElementById('offersButton');
 const offersPopover = document.getElementById('offersPopover');
 const closeOffers = document.getElementById('closeOffers');
@@ -14,26 +22,92 @@ const postUrls = [
   // Add more post URLs as needed
 ];
 
-// Toggle popover visibility
+// Toggle popover visibility functions
+function toggleHiringPopover() {
+  // Close other popovers first
+  helpPopover.classList.remove('visible');
+  offersPopover.classList.remove('visible');
+  
+  hiringPopover.classList.toggle('visible');
+  
+  // Add/remove event listener for clicking outside
+  if (hiringPopover.classList.contains('visible')) {
+    setTimeout(() => document.addEventListener('click', handleHiringClickOutside), 0);
+  } else {
+    document.removeEventListener('click', handleHiringClickOutside);
+  }
+}
+
+function toggleHelpPopover() {
+  // Close other popovers first
+  hiringPopover.classList.remove('visible');
+  offersPopover.classList.remove('visible');
+  
+  helpPopover.classList.toggle('visible');
+  
+  // Add/remove event listener for clicking outside
+  if (helpPopover.classList.contains('visible')) {
+    setTimeout(() => document.addEventListener('click', handleHelpClickOutside), 0);
+  } else {
+    document.removeEventListener('click', handleHelpClickOutside);
+  }
+}
+
 function toggleOffersPopover() {
+  // Close other popovers first
+  hiringPopover.classList.remove('visible');
+  helpPopover.classList.remove('visible');
+  
   offersPopover.classList.toggle('visible');
   
   // Add/remove event listener for clicking outside
   if (offersPopover.classList.contains('visible')) {
-    setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+    setTimeout(() => document.addEventListener('click', handleOffersClickOutside), 0);
   } else {
-    document.removeEventListener('click', handleClickOutside);
+    document.removeEventListener('click', handleOffersClickOutside);
   }
 }
 
 // Close popover when clicking outside
-function handleClickOutside(event) {
+function handleHiringClickOutside(event) {
+  if (!hiringPopover.contains(event.target) && event.target !== hiringButton) {
+    toggleHiringPopover();
+  }
+}
+
+function handleHelpClickOutside(event) {
+  if (!helpPopover.contains(event.target) && event.target !== helpButton) {
+    toggleHelpPopover();
+  }
+}
+
+function handleOffersClickOutside(event) {
   if (!offersPopover.contains(event.target) && event.target !== offersButton) {
     toggleOffersPopover();
   }
 }
 
 // Event listeners
+hiringButton.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleHiringPopover();
+});
+
+closeHiring.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleHiringPopover();
+});
+
+helpButton.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleHelpPopover();
+});
+
+closeHelp.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleHelpPopover();
+});
+
 offersButton.addEventListener('click', (e) => {
   e.stopPropagation();
   toggleOffersPopover();
@@ -46,8 +120,14 @@ closeOffers.addEventListener('click', (e) => {
 
 // Close popover when pressing Escape key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && offersPopover.classList.contains('visible')) {
-    toggleOffersPopover();
+  if (e.key === 'Escape') {
+    if (hiringPopover.classList.contains('visible')) {
+      toggleHiringPopover();
+    } else if (helpPopover.classList.contains('visible')) {
+      toggleHelpPopover();
+    } else if (offersPopover.classList.contains('visible')) {
+      toggleOffersPopover();
+    }
   }
 });
 

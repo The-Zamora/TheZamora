@@ -511,9 +511,6 @@ body{
     border-radius: 25px;
   }
   
-  .offers-container {
-    bottom: 20px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -526,10 +523,6 @@ body{
     max-width: 90%;
   }
   
-  .offers-container {
-    bottom: 15px;
-    right: 15px;
-  }
 }
 
 .contact{
@@ -834,19 +827,27 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 .powered a{ color: var(--muted); }
 .powered a:hover{ color: var(--text); }
 
-/* Offers Button & Popover */
-.offers-container {
+/* Action Buttons Container */
+.action-buttons-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 100;
   font-family: var(--font);
-  animation: borderPulse 2s infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
 }
 
-.offers-button {
-  background: linear-gradient(135deg, #D4AF37 0%, #F9E79F 100%);
-  color: #000;
+.action-button-wrapper {
+  position: relative;
+}
+
+/* Action Buttons */
+.action-button {
+  background: linear-gradient(135deg, #6A38F0 0%, #8B5CF6 100%);
+  color: #fff;
   border: none;
   border-radius: 30px;
   padding: 10px 20px;
@@ -865,16 +866,16 @@ input:focus, textarea:focus{ border-color: var(--accent); }
   min-width: 100px;
 }
 
-.offers-button:hover {
+.action-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-.offers-button:active {
+.action-button:active {
   transform: translateY(1px);
 }
 
-.offers-button::before {
+.action-button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -886,17 +887,28 @@ input:focus, textarea:focus{ border-color: var(--accent); }
   z-index: -1;
 }
 
-.offers-button:hover::before {
+.action-button:hover::before {
   width: 100%;
 }
 
-.offers-popover {
+/* Button Specific Styling */
+.help-button {
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+}
+
+.offers-button {
+  background: linear-gradient(135deg, #D4AF37 0%, #F9E79F 100%);
+  color: #000;
+}
+
+/* Action Popovers */
+.action-popover {
   position: fixed;
   bottom: 80px;
   right: 10px;
   left: 10px;
   background: rgba(20, 20, 24, 0.98);
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  border: 1px solid rgba(106, 56, 240, 0.3);
   border-radius: 16px;
   padding: 16px;
   width: auto;
@@ -911,18 +923,102 @@ input:focus, textarea:focus{ border-color: var(--accent); }
   box-sizing: border-box;
 }
 
-.offers-popover.visible {
+.action-popover.visible {
   transform: translateY(0);
   opacity: 1;
   visibility: visible;
 }
 
-.offers-popover h3 {
-  color: #D4AF37;
+.action-popover h3 {
+  color: #6A38F0;
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.2rem;
   text-align: center;
+}
+
+.action-popover p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.action-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #6A38F0 0%, #8B5CF6 100%);
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin: 5px;
+  text-align: center;
+}
+
+.action-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(106, 56, 240, 0.3);
+}
+
+.help-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.help-links .action-link {
+  width: 100%;
+  max-width: 200px;
+}
+
+.size-help-section {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.size-help-text {
+  color: #10B981;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Help Popover Specific Styling */
+.help-popover {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.help-popover h3 {
+  color: #10B981;
+}
+
+.help-popover .action-link {
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+}
+
+.help-popover .action-link:hover {
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Offers Popover Specific Styling */
+.offers-popover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(10,10,12,.55);
+  backdrop-filter: saturate(120%) blur(8px);
+}
+
+.offers-popover h3 {
+  color: #D4AF37;
 }
 
 .offers-list {
@@ -951,7 +1047,7 @@ input:focus, textarea:focus{ border-color: var(--accent); }
   margin-bottom: 0.5rem;
 }
 
-.offers-list li .discount-badge {
+.discount-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -998,17 +1094,32 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .offers-button {
+  .action-buttons-container {
+    bottom: 20px;
+    right: 20px;
+    gap: 8px;
+  }
+  
+  .action-button {
     padding: 8px 16px;
     font-size: 0.9rem;
     border-radius: 25px;
   }
   
-  .offers-popover {
+  .action-popover {
     width: calc(100% - 20px);
     max-width: 320px;
     right: 10px;
     left: auto;
+  }
+  
+  .action-popover p {
+    font-size: 0.9rem;
+  }
+  
+  .action-link {
+    font-size: 0.85rem;
+    padding: 7px 14px;
   }
   
   .offers-list li {
@@ -1018,24 +1129,35 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 }
 
 @media (max-width: 480px) {
-  .offers-container {
-    bottom: 15px;
+  .action-buttons-container {
+    bottom: 20px;
     right: 15px;
+    gap: 6px;
   }
   
-  .offers-button {
+  .action-button {
     padding: 7px 14px;
     font-size: 0.85rem;
   }
   
-  .offers-popover {
+  .action-popover {
     padding: 12px;
     border-radius: 14px;
   }
   
-  .offers-popover h3 {
+  .action-popover h3 {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+  }
+  
+  .action-popover p {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  
+  .action-link {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
   
   .offers-list {

@@ -175,18 +175,53 @@
     </a>
   </section>
 
-  <!-- Offers Button and Popover -->
-  <div class="offers-container">
-    <button class="offers-button" id="offersButton" aria-label="View special offers">
-      <span>Offers</span>
-    </button>
-    <div class="offers-popover" id="offersPopover">
-      <h3>Special Offers</h3>
-      <ul class="offers-list">
-        <li>On 2 products<span class="discount-badge discount-5">5% OFF</span></li>
-        <li>On more than 2 products<span class="discount-badge discount-10">10% OFF</span></li>
-      </ul>
-      <button class="close-button" id="closeOffers" aria-label="Close offers">×</button>
+  <!-- Action Buttons Container -->
+  <div class="action-buttons-container">
+    <!-- Hiring Button -->
+    <div class="action-button-wrapper">
+      <button class="action-button hiring-button" id="hiringButton" aria-label="View hiring opportunities">
+        <span>Hiring</span>
+      </button>
+      <div class="action-popover hiring-popover" id="hiringPopover">
+        <h3>Join Our Team</h3>
+        <p>We're always looking for talented individuals to join The Zamora family. Send us your resume and let's create amazing fashion together!</p>
+        <a href="mailto:thezamora.in@gmail.com?subject=Job Application" class="action-link">Apply Now</a>
+        <button class="close-button" id="closeHiring" aria-label="Close hiring info">×</button>
+      </div>
+    </div>
+
+    <!-- Help Button -->
+    <div class="action-button-wrapper">
+      <button class="action-button help-button" id="helpButton" aria-label="Get help and support">
+        <span>Help</span>
+      </button>
+      <div class="action-popover help-popover" id="helpPopover">
+        <h3>Need Help?</h3>
+        <p>We're here to help! Contact us for any questions about our products, orders, or general inquiries.</p>
+        <div class="size-help-section">
+          <p class="size-help-text">DM 'SIZEHELP' for fit guidance</p>
+        </div>
+        <div class="help-links">
+          <a href="mailto:thezamora.in@gmail.com" class="action-link">Email Support</a>
+          <a href="https://www.instagram.com/thezamora.in" target="_blank" class="action-link">Instagram DM</a>
+        </div>
+        <button class="close-button" id="closeHelp" aria-label="Close help info">×</button>
+      </div>
+    </div>
+
+    <!-- Offers Button -->
+    <div class="action-button-wrapper">
+      <button class="action-button offers-button" id="offersButton" aria-label="View special offers">
+        <span>Offers</span>
+      </button>
+      <div class="action-popover offers-popover" id="offersPopover">
+        <h3>Special Offers</h3>
+        <ul class="offers-list">
+          <li>On 2 products<span class="discount-badge discount-5">5% OFF</span></li>
+          <li>On more than 2 products<span class="discount-badge discount-10">10% OFF</span></li>
+        </ul>
+        <button class="close-button" id="closeOffers" aria-label="Close offers">×</button>
+      </div>
     </div>
   </div>
 
