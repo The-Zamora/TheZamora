@@ -988,9 +988,14 @@ input:focus, textarea:focus{ border-color: var(--accent); }
 .size-help-text {
   color: #10B981;
   font-weight: 600;
-  font-size: 0.95rem;
-  margin: 0;
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
   letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.size-help-text:last-child {
+  margin-bottom: 0;
 }
 
 /* Help Popover Specific Styling */
